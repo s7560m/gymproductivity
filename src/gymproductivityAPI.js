@@ -1,7 +1,10 @@
 import Axios from 'axios'
+// use this for prod
+// const addy = 'http://api.gymaction.ca'
+const addy = 'https://gymproductivity.herokuapp.com'
 
-// const addy = 'https://gymproductivity.herokuapp.com'
-const addy = 'http://localhost:3000'
+// use this for dev
+// const addy = 'http://localhost:3000'
 const api = Axios.create({
   baseURL: addy,
   withCredentials: true
