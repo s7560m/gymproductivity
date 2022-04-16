@@ -1,11 +1,11 @@
 <template>
   <v-app id="app">
     <div style="height: 10vh"></div>
-    <v-container style="width: 40vh">
+    <v-container :class="{mobile: isMobile, desktop: !isMobile}">
       <p class="paragraph">Create a group below. Be sure to fill out all the details!</p>
       <div style="height: 5vh"></div>
-      <v-text-field v-model="userCode" label="4-Letter user code." solo-inverted placeholder="E.g. PENI"></v-text-field>
-      <v-text-field v-model="groupName" label="Name of your group." solo-inverted placeholder="E.g. Raw Turkey"></v-text-field>
+      <v-text-field v-model="userCode" @input="userCodeChange" label="4-Letter user code." solo-inverted placeholder="E.g. ASDF"></v-text-field>
+      <v-text-field v-model="groupName" label="Name of your group." solo-inverted placeholder="E.g. Workout Group 1"></v-text-field>
       <v-textarea v-model="description" label="Description of your group (optional)." solo-inverted :placeholder="descriptionPlaceholder"></v-textarea>
       <div style="height: 5vh"></div>
       <v-btn @click="createGroup" fab dark color="deep-purple accent-4">
@@ -21,7 +21,7 @@
     </v-snackbar>
 
     <!--  Dialog  -->
-    <v-dialog v-model="dialog" width="50vh">
+    <v-dialog v-model="dialog" width="400px">
       <v-card>
         <v-card-title>Group successfully created!</v-card-title>
         <v-card-text>Your 6-letter group code is {{message}}. Remember to save this code so your friends can join your group too!</v-card-text>
@@ -47,9 +47,16 @@ export default {
       message: '',
       snackbar: false,
       dialog: false,
+      // mobile / desktop breakpoints
+      isMobile: window.innerWidth < 450,
     }
   },
   methods: {
+    // user code @change listener
+    userCodeChange() {
+      this.userCode = this.userCode.toUpperCase();
+    },
+
     ok() {
       // close the dialog and copy the code
       navigator.clipboard.writeText(this.message);
@@ -86,5 +93,12 @@ export default {
 }
 .paragraph {
   font-size: 20px;
+}
+.mobile {
+  width: 90vw;
+}
+
+.desktop {
+  width: 400px;
 }
 </style>

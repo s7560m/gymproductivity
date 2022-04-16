@@ -1,8 +1,10 @@
 import Axios from 'axios'
 
-const addy = 'https://gymproductivity.herokuapp.com'
+// const addy = 'https://gymproductivity.herokuapp.com'
+const addy = 'http://localhost:3000'
 const api = Axios.create({
-  baseURL: addy
+  baseURL: addy,
+  withCredentials: true
 })
 class gymproductivityAPI {
   constructor() {
@@ -14,6 +16,10 @@ class gymproductivityAPI {
     return await api.post('/user/add', {"name": name, "bio": bio}).then(response => response.data);
   }
 
+  // get the user's session (used for persistence)
+  async getUserSession() {
+    return await api.get('/user/getSession').then(response => response.data);
+  }
 
   // ============= EXERCISE STUFF =============
   async addExercise(userCode, log) {
