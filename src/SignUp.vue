@@ -41,7 +41,7 @@ export default {
   components: {AppBarDialog},
   data () {
     return {
-      dialog: true,
+      dialog: false,
       name: '',
       bio: '',
       message: '',
