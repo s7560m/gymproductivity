@@ -41,7 +41,7 @@ export default {
   components: {AppBarDialog},
   data () {
     return {
-      dialog: false,
+      dialog: true,
       name: '',
       bio: '',
       message: '',
@@ -58,17 +58,28 @@ export default {
       this.dialog = false;
       this.message = "Code copied to clipboard successfully!"
       this.snackbar = true;
+
+      // scroll to the top and show all the options that are possible. Assume the user is clueless.
+      window.scrollTo(0,0);
+      this.$emit('openNav');
+
     },
     async register () {
       const api = new gymproductivityAPI();
+
+      // successful register
       if (this.name !== '' && this.bio !== '') {
         this.userCode = await api.addUser(this.name, this.bio);
         this.name = '';
         this.bio = '';
         this.dialog = true;
+
+      // name is needed
       } else if (this.name === '') {
         this.message = "Please enter a name.";
         this.snackbar = true;
+
+      // bio is needed
       } else if (this.bio === '') {
         this.message = "Please enter a bio.";
         this.snackbar = true;

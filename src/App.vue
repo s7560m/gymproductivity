@@ -30,7 +30,7 @@
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
-    <router-view/>
+    <router-view v-on:openNav="drawer = true" />
     </v-app>
   </div>
 </template>

@@ -1,7 +1,6 @@
 import Axios from 'axios'
 // use this for prod
-// const addy = 'http://api.gymaction.ca'
-const addy = 'https://gymproductivity.herokuapp.com'
+const addy = 'https://api.gymaction.ca'
 
 // use this for dev
 // const addy = 'http://localhost:3000'
@@ -29,6 +28,9 @@ class gymproductivityAPI {
     return await api.post('/exercise/add', {"code": userCode, "description": log}).then(response => response.data);
   }
 
+  async updateBio(user) {
+    return await api.post('/user/updateBio', user).then(response => response.data);
+  }
 
   // ==================== GROUP STUFF ======================
   // get the leaderboard, return an array

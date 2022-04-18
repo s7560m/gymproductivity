@@ -39,7 +39,6 @@ export default {
     // we want to load the user's session (if they have any)
     const api = new gymproductivityAPI();
     this.userCode = await api.getUserSession().then(response => {
-      console.log(response);
 
       // only return the user code if the session exists
       if (response.user) {
