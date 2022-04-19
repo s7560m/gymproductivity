@@ -7,6 +7,7 @@ import SubmitWorkoout from "../SubmitWorkout";
 import ViewStats from "../ViewStats";
 import JoinGroup from "../JoinGroup";
 import CreateGroup from "../CreateGroup";
+import LandingPage from "../LandingPage";
 
 Vue.use(Router)
 
@@ -15,6 +16,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Landing',
+      component: LandingPage
+    },
+    {
+      path: '/register',
       name: 'Signup',
       component: Signup
     },

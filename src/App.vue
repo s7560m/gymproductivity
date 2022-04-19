@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <v-app-bar max-height="60px" color="deep-purple accent-4" dark>
+      <v-app-bar v-if="showAppBar" elevation="10" max-height="60px" dark color="deep-purple accent-4">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer">
           <v-icon>mdi-menu</v-icon>
         </v-app-bar-nav-icon>
@@ -42,20 +42,38 @@ export default {
     return {
       drawer: false,
       list: [
-        {icon: "mdi-login", text: "Register.", link: "/"},
+        {icon: "mdi-login", text: "Register.", link: "/register"},
         {icon: "mdi-account-group-outline", text: "Create a group.", link: "/create"},
         {icon: "mdi-account-group", text: "Join a group.", link: "/join"},
         {icon: "mdi-weight-lifter", text: "Submit a workout.", link: "/submit"},
         {icon: "mdi-file-document", text: "View stats.", link: "/stats"}
-      ]
+      ],
+      showAppBar: false,
     }
+  },
+  created () {
+    // hide app bar if route path is landing page ("/")
+    // we want to call it in the created because when a user navigates to a url manually we want to listen to that
+    this.showAppBarFunction(this.$route);
   },
   methods: {
     navigate (link) {
       this.drawer = false;
       this.$router.push(link);
+    },
+
+    showAppBarFunction(route) {
+      this.showAppBar = route.name !== "Landing";
+    }
+  },
+  watch: {
+    $route (to, from) {
+      this.showAppBarFunction(to);
+      // this.showAppBar = this.$route.name !== "Landing";
+      // alert(this.$route.name);
     }
   }
+
 
 }
 </script>
@@ -63,6 +81,7 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  color: black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
