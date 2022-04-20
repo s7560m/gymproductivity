@@ -15,7 +15,7 @@
     </div>
     <div id="paragraphcontainer">
       <p id="paragraph" :class="{paragraph_desktop: !isMobile, paragraph_mobile: isMobile}">Take your workouts to the next level by competing with your friends in exciting ways.</p>
-      <v-btn @click="getStarted" :large="getInnerWidthLarge" dark id="button" :class="{button_desktop: !isMobile, button_mobile: isMobile}">try for free</v-btn>
+      <v-btn @click="getStarted" :large="getInnerWidthLarge" :small="isMobile" dark id="button" :class="{button_desktop: !isMobile, button_mobile: isMobile}">try for free</v-btn>
     </div>
   </v-container>
     <div style="position: relative"></div>
@@ -43,7 +43,8 @@ export default {
   computed: {
     getInnerWidthLarge () {
       return window.innerWidth > 1500;
-    }
+    },
+
   }
 }
 </script>
@@ -115,13 +116,14 @@ export default {
 }
 
 .dumbbell_desktop {
-  font-size: 6vw;
+  /* vuetify uses !important in their styling, so use !important to override it */
+  font-size: 6vw !important;
   bottom: 2.5vw;
   left: 20px;
 }
 
 .dumbbell_mobile {
-  font-size: 14vw;
+  font-size: 14vw !important;
   bottom: 5vw;
   left: 10px;
 }
@@ -160,11 +162,11 @@ export default {
 
 .button_mobile {
   transform: translateY(87vw);
-  font-size: 6vw;
+  font-size: 6vw !important;
 }
 .button_desktop {
   transform: translateY(30vw);
-  font-size: 1.3vw;
+  font-size: 1.3vw !important;
 }
 
 #copyright {
