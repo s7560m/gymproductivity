@@ -24,7 +24,7 @@
     <v-dialog v-model="dialog" width="400px">
       <v-card>
         <v-card-title>You've been successfully registered!</v-card-title>
-        <v-card-text>Welcome to the gym accountability app! Your 4-letter code is {{userCode}}. Save it somewhere safe and secret so you don't lose it! You'll need this code to join groups and submit exercises.</v-card-text>
+        <v-card-text>Welcome to the gymaction.ca! Your 4-letter code is {{userCode}}. Save it somewhere safe and secret so you don't lose it! You'll need this code to join groups and submit exercises.</v-card-text>
         <v-card-actions>
           <v-btn @click="ok" text color="purple">copy code and close modal</v-btn>
         </v-card-actions>
